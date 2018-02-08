@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h1 class="float-left">Restaurant daily menu reservation system</h1>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <% @menus.each_with_index do |menu, index| %>
+          <% if (index % 3 == 0) %>
+            <div class="clearfix"></div>
+          <% end %>
+          <div class="col-4">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= menu.date.strftime("%A, %e %b") %>
+                </h4>
+
+                <ul>
+                  <li>
+                    <strong>Appetizer:</strong>
+                    <% menu.meals.each do |meal| %>
+                      <% if meal.kind == 'appetizer' %>
+                        <%= link_to meal.title, meal_view_path(meal) %>
+                      <% end %>
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <strong>Soup:</strong>
+                    <% menu.meals.each do |meal| %>
+                      <% if meal.kind == 'soup' %>
+                        <%= link_to meal.title, meal_view_path(meal) %>
+                      <% end %>
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <strong>Main meal:</strong>
+                    <% menu.meals.each do |meal| %>
+                      <% if meal.kind == 'main' %>
+                        <%= link_to meal.title, meal_view_path(meal) %>
+                      <% end %>
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <strong>Sweet:</strong>
+                    <% menu.meals.each do |meal| %>
+                      <% if meal.kind == 'sweet' %>
+                        <%= link_to meal.title, meal_view_path(meal) %>
+                      <% end %>
+                    <% end %>
+                  </li>
+                </ul>
+
+                
+                <%= link_to 'Reservation', new_menu_reservation_path(menu.id), :class => 'btn btn-success mx-auto center-button' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

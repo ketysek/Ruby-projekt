@@ -1,0 +1,30 @@
+<%= form_with model: @alergen, local: true do |form| %>
+  <% if @alergen.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4>
+        <%= pluralize(@alergen.errors.count, "error") %>
+        prohibited this article from being saved:
+      </h4>
+      <ul>
+        <% @alergen.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label>Name</label>
+    <%= form.text_field :name, :class => 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Identifier</label>
+    <%= form.number_field :identifier, in: 1..14, step: 1, :class => 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= link_to 'Back', alergens_path, :class => 'btn btn-warning' %>
+    <%= form.submit 'Submit', :class => 'btn btn-primary float-right' %>
+  </div>
+<% end %>

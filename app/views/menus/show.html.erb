@@ -1,0 +1,69 @@
+<%= render 'admin/nav.html.erb' %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1>
+        Menu date: <%= @menu.date %>
+      </h1>
+
+      <ul>
+        <li>
+          <strong>Appetizer:</strong>
+          <% @menu.meals.each do |meal| %>
+            <% if meal.kind == 'appetizer' %>
+              <span><%= meal.title %></span>
+            <% end %>
+          <% end %>
+        </li>
+
+        <li>
+          <strong>Soup:</strong>
+          <% @menu.meals.each do |meal| %>
+            <% if meal.kind == 'soup' %>
+              <span><%= meal.title %></span>
+            <% end %>
+          <% end %>
+        </li>
+
+        <li>
+          <strong>Main meal:</strong>
+          <% @menu.meals.each do |meal| %>
+            <% if meal.kind == 'main' %>
+              <span><%= meal.title %></span>
+            <% end %>
+          <% end %>
+        </li>
+
+        <li>
+          <strong>Sweet:</strong>
+          <% @menu.meals.each do |meal| %>
+            <% if meal.kind == 'sweet' %>
+              <span><%= meal.title %></span>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Count</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @menu.reservations.each do |reservation| %>
+          <tr>
+            <td><%= reservation.count %></td>
+            <td><%= reservation.customer.name %> <%= reservation.customer.surname %></td>
+            <td><%= reservation.customer.email %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <%= link_to 'Back', menus_path, :class => 'btn btn-warning' %>
+    </div>
+  </div>
+</div>

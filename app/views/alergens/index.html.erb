@@ -1,0 +1,32 @@
+<%= render 'admin/nav.html.erb' %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <h1 class="float-left">Listing allergens</h1>
+      <%= link_to 'New allergen', new_alergen_path, :class => 'btn btn-primary float-right' %>
+    </div>
+    <div class="col-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Identified</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @alergens.each do |alergen| %>
+          <tr>
+            <td><%= alergen.identifier %></td>
+            <td><%= alergen.name %></td>
+            <td>
+              <%= link_to 'Edit', edit_alergen_path(alergen), :class => 'btn btn-warning' %>
+              <%= link_to 'Delete', alergen_path(alergen), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

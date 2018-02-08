@@ -1,0 +1,23 @@
+@import "bootstrap";
+@import "font-awesome";
+@import "tempusdominus-bootstrap-4.css";
+
+body {
+  padding: 30px 0;
+}
+
+.clearfix {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.col-4 {
+  .card {
+    margin-bottom: 30px;
+  }
+}
+
+.center-button {
+  display: table;
+}

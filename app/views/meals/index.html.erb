@@ -1,0 +1,43 @@
+<%= render 'admin/nav.html.erb' %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <h1 class="float-left">Listing meals</h1>
+      <%= link_to 'New meal', new_meal_path, :class => 'btn btn-primary float-right' %>
+    </div>
+    <div class="col-10">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Allergens</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @meals.each do |meal| %>
+          <tr>
+            <td><%= meal.title %></td>
+            <td>
+              <% if meal.kind == 'main' %>
+                main dish
+              <% else %>
+                <%= meal.kind %>
+              <% end %>
+            </td>
+            <td><%= meal.price %></td>
+            <td><%= meal.alergens.map(&:identifier).join(', ') %></td>
+            <td>
+              <%= link_to 'Show', meal_path(meal), :class => 'btn btn-primary' %>
+              <%= link_to 'Edit', edit_meal_path(meal), :class => 'btn btn-warning' %>
+              <%= link_to 'Delete', meal_path(meal), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2>
+        Menu reservation: <%= @menu.date.strftime("%A, %e %b") %>
+      </h2>
+      <p>
+        <%= @menu.meals.map(&:title).join(', ') %>
+      </p>
+      <h3>
+        Fill the form bellow please
+      </h3>
+      <%= form_with(model: [ @menu, @menu.reservations.build ], local: true) do |form| %>
+        <div class="form-group">
+          <label>Name</label>
+          <%= form.text_field :name, :class => 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <label>Surname</label>
+          <%= form.text_field :surname, :class => 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <%= form.text_field :email, :class => 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <label>Number of reservations</label>
+          <%= form.number_field :count, in: 1..10, step: 1, :class => 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= link_to 'Back', root_path, :class => 'btn btn-warning' %>
+          <%= form.submit 'Submit', :class => 'btn btn-primary float-right' %>
+        </div>
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<%= render 'admin/nav.html.erb' %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h1 class="float-left">Listing menus</h1>
+      <%= link_to 'New menu', new_menu_path, :class => 'btn btn-primary float-right' %>
+    </div>
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Meals</th>
+            <th>Reservations</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @menus.each do |menu| %>
+          <tr>
+            <td><%= menu.date %></td>
+            <td><%= menu.meals.map(&:title).join(', ') %></td>
+            <td><%= menu.reservations.length %></td>
+            <td>
+              <%= link_to 'Reservations', menu_path(menu), :class => 'btn btn-primary' %>
+              <%= link_to 'Edit', edit_menu_path(menu), :class => 'btn btn-warning' %>
+              <%= link_to 'Delete', menu_path(menu), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

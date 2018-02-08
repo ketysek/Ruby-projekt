@@ -1,0 +1,30 @@
+<%= render 'admin/nav.html.erb' %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <h1 class="float-left">Listing customers</h1>
+    </div>
+    <div class="col-10">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Reservations total</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.name %></td>
+            <td><%= customer.surname %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.reservations.length %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
